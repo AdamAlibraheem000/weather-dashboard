@@ -86,13 +86,37 @@ function fiveDayFetch(cityName) {
     })
     .then(function (fiveDayData) {
       // Day one
-
       // Icon, ,data, temp, wind speed ,& humd
       let dayOneDate = fiveDayData.list[0].dt_txt;
       let dayOneIcon = fiveDayData.list[0].weather[0].icon + ".png";
       let dayOneTemp = fiveDayData.list[0].main.temp;
       let dayOneWind = fiveDayData.list[0].wind.speed;
+      let dayOneHumd = fiveDayData.list[0].main.humidity;
+      // Day Two
+      let dayTwoDate = fiveDayData.list[1].dt_txt;
+      let dayTwoIcon = fiveDayData.list[1].weather[0].icon + ".png";
+      let dayTwoTemp = fiveDayData.list[1].main.temp;
+      let dayTwoWind = fiveDayData.list[1].wind.speed;
+      let dayTwoHumd = fiveDayData.list[1].main.humidity;
+      // Day Three
+      let dayThreeDate = fiveDayData.list[2].dt_txt;
+      let dayThreeIcon = fiveDayData.list[2].weather[0].icon + ".png";
+      let dayThreeTemp = fiveDayData.list[2].main.temp;
+      let dayThreeWind = fiveDayData.list[2].wind.speed;
+      let dayThreeHumd = fiveDayData.list[2].main.humidity;
+      // Day Four
+      let dayFourDate = fiveDayData.list[3].dt_txt;
+      let dayFourIcon = fiveDayData.list[3].weather[0].icon + ".png";
+      let dayFourTemp = fiveDayData.list[3].main.temp;
+      let dayFourWind = fiveDayData.list[3].wind.speed;
+      let dayFourHumd = fiveDayData.list[3].main.humidity;
+      // Day Five
+      let dayFiveDate = fiveDayData.list[4].dt_txt;
+      let dayFiveIcon = fiveDayData.list[4].weather[0].icon + ".png";
+      let dayFiveTemp = fiveDayData.list[4].main.temp;
+      let dayFiveWind = fiveDayData.list[4].wind.speed;
+      let dayFiveHumd = fiveDayData.list[4].main.humidity;
 
-      console.log("The number is: " + dayOneWind);
+      console.log("The number is: " + dayFiveIcon);
     });
 }
