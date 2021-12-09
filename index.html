@@ -15,12 +15,78 @@
     <title>Weather DashBoard</title>
   </head>
   <body>
-    <h1>Weather DashBoard</h1>
-    <h2>Enter city to search for:</h2>
+    <div class="title">
+      <h1>Weather DashBoard</h1>
+    </div>
 
-    <input type="text" id="userInput" />
-    <button class="btn btn-primary" type="button">Submit</button>
+    <div class="grid-one">
+      <div>
+        <h2>Enter city to search for:</h2>
+        <input class="" type="text" id="userInput" />
+        <button class="btn btn-primary">Submit</button>
+      </div>
+      <div>
+        <h2>Current Weather</h2>
+        <ul class="current">
+          <li class="city-name"></li>
+          <li class="current-date"></li>
+          <li><img class="current-icon" src="" alt="" /></li>
+          <li class="current-temp"></li>
+          <li class="current-humd"></li>
+          <li class="current-windSpeed"></li>
+          <li class="current-uvi"></li>
+        </ul>
+      </div>
+    </div>
+
     <h2>Five Day Weather Forcast</h2>
+    <div class="grid-two">
+      <div class="forcast-one">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="forcast-two">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="forcast-three">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="forcast-four">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="forcast-five">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>

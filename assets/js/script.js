@@ -47,33 +47,55 @@ btn.addEventListener("click", function () {
         .then(function (data) {
           // Get City name & add to array searchHistory:
           let getCityName = cityName;
-          searchHistory.push(getCityName);
-          console.log(searchHistory[0]);
+
+          // Check if city name is already in array before adding to array
+          for (let i = 0; i < searchHistory.length; i++) {
+            if (searchHistory[i] === getCityName) {
+              console.log("Already in array!");
+              break;
+            } else {
+              searchHistory.push(getCityName);
+            }
+          }
 
           //get date:
-          let nextDate = new Date(data.current.dt);
-          nextDate.toString();
+          let currentDateVar = moment().format("MMM Do YYYY");
 
           // Get weather Icon:
           let wIcon = data.current.weather[0].icon + ".png";
-          let weatherImg = document.createElement("img");
-          weatherImg.setAttribute("src", getWeatherIcon + wIcon);
-          document.body.appendChild(weatherImg);
+          // let weatherImg = document.createElement("img");
+          // weatherImg.setAttribute("src", getWeatherIcon + wIcon);
+          // document.body.appendChild(weatherImg);
+
+          let currentIcon = document.querySelector(".current-icon");
+          currentIcon.setAttribute("src", getWeatherIcon + wIcon);
 
           // Get current weather conditions:
-          // let temp = data.current.temp;
-          // let humidity = data.current.humidity;
-          // let windSpeed = data.current.wind_speed;
-          // let uv = data.current.uvi;
+          let temp = data.current.temp;
+          let humidity = data.current.humidity;
+          let windSpeed = data.current.wind_speed;
+          let uv = data.current.uvi; //UV index not working
 
-          let dayTwo = new Date(data.daily[1].dt);
-          dayTwo.toString();
+          let currentDate = document.querySelector(".current-date");
+          currentDate.textContent = currentDateVar;
+
+          let currentTemp = document.querySelector(".current-temp");
+          currentTemp.textContent = temp;
+
+          let currentHumd = document.querySelector(".current-humd");
+          currentHumd.textContent = humidity;
+
+          let currentWindSpeed = document.querySelector(".current-windSpeed");
+          currentWindSpeed.textContent = windSpeed;
+
+          let currentUV = document.querySelector(".current-uvi");
+          currentUV.textContent = uv;
 
           // console.log(uv);
           // console.log(temp);
           // console.log(humidity);
           // console.log(windSpeed);
-          console.log(nextDate);
+          // console.log(nextDate);
         });
     });
 });
@@ -117,6 +139,14 @@ function fiveDayFetch(cityName) {
       let dayFiveWind = fiveDayData.list[4].wind.speed;
       let dayFiveHumd = fiveDayData.list[4].main.humidity;
 
-      console.log("The number is: " + dayFiveIcon);
+      // console.log("The number is: " + dayFiveIcon);
     });
+}
+
+function StoreData() {
+  localStorage.setItem("arraySearchHistory", JSON.stringify(searchHistory));
+}
+
+function RetrieveData() {
+  searchHistory = JSON.parse(localStorage.getItem("arraySeachHistory"));
 }

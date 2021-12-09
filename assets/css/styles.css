@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-one {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+}
+
+.grid-one .current {
+  height: 300px;
+  border: 2px solid black;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
