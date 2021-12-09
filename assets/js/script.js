@@ -58,6 +58,11 @@ btn.addEventListener("click", function () {
             }
           }
 
+          // get city
+          let currentCity = data.timezone;
+          let currentCityDis = document.querySelector(".city-name");
+          currentCityDis.textContent = currentCity;
+
           //get date:
           let currentDateVar = moment().format("MMM Do YYYY");
 
@@ -76,6 +81,7 @@ btn.addEventListener("click", function () {
           let windSpeed = data.current.wind_speed;
           let uv = data.current.uvi; //UV index not working
 
+          // Display current weather conditions
           let currentDate = document.querySelector(".current-date");
           currentDate.textContent = currentDateVar;
 
@@ -114,24 +120,72 @@ function fiveDayFetch(cityName) {
       let dayOneTemp = fiveDayData.list[0].main.temp;
       let dayOneWind = fiveDayData.list[0].wind.speed;
       let dayOneHumd = fiveDayData.list[0].main.humidity;
+
+      let dayOneDateDis = document.querySelector(".dayOneDate");
+      dayOneDateDis.textContent = dayOneDate;
+      let dayOneIconDis = document.querySelector(".dayOneIcon");
+      dayOneIconDis.setAttribute("src", getWeatherIcon + dayOneIcon);
+      let dayOneTempDis = document.querySelector(".dayOneTemp");
+      dayOneTempDis.textContent = dayOneTemp;
+      let dayOneWindDis = document.querySelector(".dayOneWind");
+      dayOneWindDis.textContent = dayOneWind;
+      let dayOneHumdDis = document.querySelector(".dayOneHumd");
+      dayOneHumdDis.textContent = dayOneHumd;
+
       // Day Two
       let dayTwoDate = fiveDayData.list[1].dt_txt;
       let dayTwoIcon = fiveDayData.list[1].weather[0].icon + ".png";
       let dayTwoTemp = fiveDayData.list[1].main.temp;
       let dayTwoWind = fiveDayData.list[1].wind.speed;
       let dayTwoHumd = fiveDayData.list[1].main.humidity;
+
+      let dayTwoDateDis = document.querySelector(".dayTwoDate");
+      dayTwoDateDis.textContent = dayTwoDate;
+      let dayTwoIconDis = document.querySelector(".dayTwoIcon");
+      dayTwoIconDis.setAttribute("src", getWeatherIcon + dayTwoIcon);
+      let dayTwoTempDis = document.querySelector(".dayTwoTemp");
+      dayTwoTempDis.textContent = dayTwoTemp;
+      let dayTwoWindDis = document.querySelector(".dayTwoWind");
+      dayTwoWindDis.textContent = dayTwoWind;
+      let dayTwoHumdDis = document.querySelector(".dayTwoHumd");
+      dayTwoHumdDis.textContent = dayTwoHumd;
+
       // Day Three
       let dayThreeDate = fiveDayData.list[2].dt_txt;
       let dayThreeIcon = fiveDayData.list[2].weather[0].icon + ".png";
       let dayThreeTemp = fiveDayData.list[2].main.temp;
       let dayThreeWind = fiveDayData.list[2].wind.speed;
       let dayThreeHumd = fiveDayData.list[2].main.humidity;
+
+      let dayThreeDateDis = document.querySelector(".dayThreeDate");
+      dayThreeDateDis.textContent = dayThreeDate;
+      let dayThreeIconDis = document.querySelector(".dayThreeIcon");
+      dayThreeIconDis.setAttribute("src", getWeatherIcon + dayThreeIcon);
+      let dayThreeTempDis = document.querySelector(".dayThreeTemp");
+      dayThreeTempDis.textContent = dayThreeTemp;
+      let dayThreeWindDis = document.querySelector(".dayThreeWind");
+      dayThreeWindDis.textContent = dayThreeWind;
+      let dayThreeHumdDis = document.querySelector(".dayThreeHumd");
+      dayThreeHumdDis.textContent = dayThreeHumd;
+
       // Day Four
       let dayFourDate = fiveDayData.list[3].dt_txt;
       let dayFourIcon = fiveDayData.list[3].weather[0].icon + ".png";
       let dayFourTemp = fiveDayData.list[3].main.temp;
       let dayFourWind = fiveDayData.list[3].wind.speed;
       let dayFourHumd = fiveDayData.list[3].main.humidity;
+
+      let dayFourDateDis = document.querySelector(".dayFourDate");
+      dayFourDateDis.textContent = dayFourDate;
+      let dayFourIconDis = document.querySelector(".dayFourIcon");
+      dayFourIconDis.setAttribute("src", getWeatherIcon + dayFourIcon);
+      let dayFourTempDis = document.querySelector(".dayFourTemp");
+      dayFourTempDis.textContent = dayFourTemp;
+      let dayFourWindDis = document.querySelector(".dayFourWind");
+      dayFourWindDis.textContent = dayFourWind;
+      let dayFourHumdDis = document.querySelector(".dayFourHumd");
+      dayFourHumdDis.textContent = dayFourHumd;
+
       // Day Five
       let dayFiveDate = fiveDayData.list[4].dt_txt;
       let dayFiveIcon = fiveDayData.list[4].weather[0].icon + ".png";
@@ -139,7 +193,16 @@ function fiveDayFetch(cityName) {
       let dayFiveWind = fiveDayData.list[4].wind.speed;
       let dayFiveHumd = fiveDayData.list[4].main.humidity;
 
-      // console.log("The number is: " + dayFiveIcon);
+      let dayFiveDateDis = document.querySelector(".dayFiveDate");
+      dayFiveDateDis.textContent = dayFiveDate;
+      let dayFiveIconDis = document.querySelector(".dayFiveIcon");
+      dayFiveIconDis.setAttribute("src", getWeatherIcon + dayFiveIcon);
+      let dayFiveTempDis = document.querySelector(".dayFiveTemp");
+      dayFiveTempDis.textContent = dayFiveTemp;
+      let dayFiveWindDis = document.querySelector(".dayFiveWind");
+      dayFiveWindDis.textContent = dayFiveWind;
+      let dayFiveHumdDis = document.querySelector(".dayFiveHumd");
+      dayFiveHumdDis.textContent = dayFiveHumd;
     });
 }
 
