@@ -23,7 +23,7 @@ btn.addEventListener("click", function () {
     cityName +
     "&cnt=5&appid=6a193b0402d92ad688c98786f9ef7e7f";
 
-  fiveDayFetch(getFiveDay);
+  // fiveDayFetch(getFiveDay);
 
   fetch(getCityAPI)
     .then(function (response) {
@@ -38,7 +38,7 @@ btn.addEventListener("click", function () {
         lat +
         "&lon=" +
         lon +
-        "&appid=6a193b0402d92ad688c98786f9ef7e7f";
+        "&units=imperial&appid=6a193b0402d92ad688c98786f9ef7e7f";
 
       fetch(cityLatLon)
         .then(function (response) {
@@ -86,125 +86,220 @@ btn.addEventListener("click", function () {
           currentDate.textContent = currentDateVar;
 
           let currentTemp = document.querySelector(".current-temp");
-          currentTemp.textContent = temp;
+          currentTemp.textContent = "temp: " + temp;
 
           let currentHumd = document.querySelector(".current-humd");
-          currentHumd.textContent = humidity;
+          currentHumd.textContent = "humidity: " + humidity;
 
           let currentWindSpeed = document.querySelector(".current-windSpeed");
-          currentWindSpeed.textContent = windSpeed;
+          currentWindSpeed.textContent = "wind speed: " + windSpeed;
 
           let currentUV = document.querySelector(".current-uvi");
-          currentUV.textContent = uv;
+          currentUV.textContent = "uv index: " + uv;
+          currentUV.style.backgroundColor = "red";
 
-          // console.log(uv);
-          // console.log(temp);
-          // console.log(humidity);
-          // console.log(windSpeed);
-          // console.log(nextDate);
+          if (uv < 0.3) {
+            currentUV.style.backgroundColor = "green";
+          } else if (uv > 0.3 && uv < 0.7) {
+            currentUV.style.backgroundColor = "yellow";
+          } else {
+            currentUV.style.backgroundColor = "red";
+          }
+
+          // Five day data
+          // Day one
+          // Icon, ,data, temp, wind speed ,& humd
+          let dayOneDate = data.daily[0].dt;
+          let dayOneIcon = data.daily[0].weather[0].icon + ".png";
+          let dayOneTemp = data.daily[0].temp.day;
+          let dayOneWind = data.daily[0].wind_speed;
+          let dayOneHumd = data.daily[0].humidity;
+
+          let dayOneDateDis = document.querySelector(".dayOneDate");
+          dayOneDateDis.textContent = "date: " + dayOneDate;
+          let dayOneIconDis = document.querySelector(".dayOneIcon");
+          dayOneIconDis.setAttribute("src", getWeatherIcon + dayOneIcon);
+          let dayOneTempDis = document.querySelector(".dayOneTemp");
+          dayOneTempDis.textContent = "temp: " + dayOneTemp;
+          let dayOneWindDis = document.querySelector(".dayOneWind");
+          dayOneWindDis.textContent = "wind Speed: " + dayOneWind;
+          let dayOneHumdDis = document.querySelector(".dayOneHumd");
+          dayOneHumdDis.textContent = "humidity: " + dayOneHumd;
+
+          // Day Two
+          let dayTwoDate = data.daily[1].dt;
+          let dayTwoIcon = data.daily[1].weather[0].icon + ".png";
+          let dayTwoTemp = data.daily[1].temp.day;
+          let dayTwoWind = data.daily[1].wind_speed;
+          let dayTwoHumd = data.daily[1].humidity;
+
+          let dayTwoDateDis = document.querySelector(".dayTwoDate");
+          dayTwoDateDis.textContent = "date: " + dayTwoDate;
+          let dayTwoIconDis = document.querySelector(".dayTwoIcon");
+          dayTwoIconDis.setAttribute("src", getWeatherIcon + dayTwoIcon);
+          let dayTwoTempDis = document.querySelector(".dayTwoTemp");
+          dayTwoTempDis.textContent = "temp: " + dayTwoTemp;
+          let dayTwoWindDis = document.querySelector(".dayTwoWind");
+          dayTwoWindDis.textContent = "wind Speed: " + dayTwoWind;
+          let dayTwoHumdDis = document.querySelector(".dayTwoHumd");
+          dayTwoHumdDis.textContent = "humidity: " + dayTwoHumd;
+
+          // Day Three
+          let dayThreeDate = data.daily[2].dt;
+          let dayThreeIcon = data.daily[2].weather[0].icon + ".png";
+          let dayThreeTemp = data.daily[2].temp.day;
+          let dayThreeWind = data.daily[2].wind_speed;
+          let dayThreeHumd = data.daily[2].humidity;
+
+          let dayThreeDateDis = document.querySelector(".dayThreeDate");
+          dayThreeDateDis.textContent = "date: " + dayThreeDate;
+          let dayThreeIconDis = document.querySelector(".dayThreeIcon");
+          dayThreeIconDis.setAttribute("src", getWeatherIcon + dayThreeIcon);
+          let dayThreeTempDis = document.querySelector(".dayThreeTemp");
+          dayThreeTempDis.textContent = "temp: " + dayThreeTemp;
+          let dayThreeWindDis = document.querySelector(".dayThreeWind");
+          dayThreeWindDis.textContent = "wind Speed: " + dayThreeWind;
+          let dayThreeHumdDis = document.querySelector(".dayThreeHumd");
+          dayThreeHumdDis.textContent = "humidity: " + dayThreeHumd;
+
+          // Day Four
+          let dayFourDate = data.daily[3].dt;
+          let dayFourIcon = data.daily[3].weather[0].icon + ".png";
+          let dayFourTemp = data.daily[3].temp.day;
+          let dayFourWind = data.daily[3].wind_speed;
+          let dayFourHumd = data.daily[3].humidity;
+
+          let dayFourDateDis = document.querySelector(".dayFourDate");
+          dayFourDateDis.textContent = "date: " + dayFourDate;
+          let dayFourIconDis = document.querySelector(".dayFourIcon");
+          dayFourIconDis.setAttribute("src", getWeatherIcon + dayFourIcon);
+          let dayFourTempDis = document.querySelector(".dayFourTemp");
+          dayFourTempDis.textContent = "temp: " + dayFourTemp;
+          let dayFourWindDis = document.querySelector(".dayFourWind");
+          dayFourWindDis.textContent = "wind Speed: " + dayFourWind;
+          let dayFourHumdDis = document.querySelector(".dayFourHumd");
+          dayFourHumdDis.textContent = "humidity: " + dayFourHumd;
+
+          // Day Five
+          let dayFiveDate = data.daily[4].dt;
+          let dayFiveIcon = data.daily[4].weather[0].icon + ".png";
+          let dayFiveTemp = data.daily[4].temp.day;
+          let dayFiveWind = data.daily[4].wind_speed;
+          let dayFiveHumd = data.daily[4].humidity;
+
+          let dayFiveDateDis = document.querySelector(".dayFiveDate");
+          dayFiveDateDis.textContent = "date: " + dayFiveDate;
+          let dayFiveIconDis = document.querySelector(".dayFiveIcon");
+          dayFiveIconDis.setAttribute("src", getWeatherIcon + dayFiveIcon);
+          let dayFiveTempDis = document.querySelector(".dayFiveTemp");
+          dayFiveTempDis.textContent = "temp: " + dayFiveTemp;
+          let dayFiveWindDis = document.querySelector(".dayFiveWind");
+          dayFiveWindDis.textContent = "wind Speed: " + dayFiveWind;
+          let dayFiveHumdDis = document.querySelector(".dayFiveHumd");
+          dayFiveHumdDis.textContent = "humidity: " + dayFiveHumd;
         });
     });
 });
 
-function fiveDayFetch(cityName) {
-  let getCityName = cityName;
-  fetch(getCityName)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (fiveDayData) {
-      // Day one
-      // Icon, ,data, temp, wind speed ,& humd
-      let dayOneDate = fiveDayData.list[0].dt_txt;
-      let dayOneIcon = fiveDayData.list[0].weather[0].icon + ".png";
-      let dayOneTemp = fiveDayData.list[0].main.temp;
-      let dayOneWind = fiveDayData.list[0].wind.speed;
-      let dayOneHumd = fiveDayData.list[0].main.humidity;
+// function fiveDayFetch(cityName) {
+//   let getCityName = cityName;
+//   fetch(getCityName)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       // Day one
+//       // Icon, ,data, temp, wind speed ,& humd
+//       let dayOneDate = data.daily[0].dt_txt;
+//       let dayOneIcon = data.daily[0].weather[0].icon + ".png";
+//       let dayOneTemp = data.daily[0].main.temp;
+//       let dayOneWind = data.daily[0].wind.speed;
+//       let dayOneHumd = data.daily[0].main.humidity;
 
-      let dayOneDateDis = document.querySelector(".dayOneDate");
-      dayOneDateDis.textContent = dayOneDate;
-      let dayOneIconDis = document.querySelector(".dayOneIcon");
-      dayOneIconDis.setAttribute("src", getWeatherIcon + dayOneIcon);
-      let dayOneTempDis = document.querySelector(".dayOneTemp");
-      dayOneTempDis.textContent = dayOneTemp;
-      let dayOneWindDis = document.querySelector(".dayOneWind");
-      dayOneWindDis.textContent = dayOneWind;
-      let dayOneHumdDis = document.querySelector(".dayOneHumd");
-      dayOneHumdDis.textContent = dayOneHumd;
+//       let dayOneDateDis = document.querySelector(".dayOneDate");
+//       dayOneDateDis.textContent = dayOneDate;
+//       let dayOneIconDis = document.querySelector(".dayOneIcon");
+//       dayOneIconDis.setAttribute("src", getWeatherIcon + dayOneIcon);
+//       let dayOneTempDis = document.querySelector(".dayOneTemp");
+//       dayOneTempDis.textContent = dayOneTemp;
+//       let dayOneWindDis = document.querySelector(".dayOneWind");
+//       dayOneWindDis.textContent = dayOneWind;
+//       let dayOneHumdDis = document.querySelector(".dayOneHumd");
+//       dayOneHumdDis.textContent = dayOneHumd;
 
-      // Day Two
-      let dayTwoDate = fiveDayData.list[1].dt_txt;
-      let dayTwoIcon = fiveDayData.list[1].weather[0].icon + ".png";
-      let dayTwoTemp = fiveDayData.list[1].main.temp;
-      let dayTwoWind = fiveDayData.list[1].wind.speed;
-      let dayTwoHumd = fiveDayData.list[1].main.humidity;
+//       // Day Two
+//       let dayTwoDate = data.daily[1].dt_txt;
+//       let dayTwoIcon = data.daily[1].weather[0].icon + ".png";
+//       let dayTwoTemp = data.daily[1].main.temp;
+//       let dayTwoWind = data.daily[1].wind.speed;
+//       let dayTwoHumd = data.daily[1].main.humidity;
 
-      let dayTwoDateDis = document.querySelector(".dayTwoDate");
-      dayTwoDateDis.textContent = dayTwoDate;
-      let dayTwoIconDis = document.querySelector(".dayTwoIcon");
-      dayTwoIconDis.setAttribute("src", getWeatherIcon + dayTwoIcon);
-      let dayTwoTempDis = document.querySelector(".dayTwoTemp");
-      dayTwoTempDis.textContent = dayTwoTemp;
-      let dayTwoWindDis = document.querySelector(".dayTwoWind");
-      dayTwoWindDis.textContent = dayTwoWind;
-      let dayTwoHumdDis = document.querySelector(".dayTwoHumd");
-      dayTwoHumdDis.textContent = dayTwoHumd;
+//       let dayTwoDateDis = document.querySelector(".dayTwoDate");
+//       dayTwoDateDis.textContent = dayTwoDate;
+//       let dayTwoIconDis = document.querySelector(".dayTwoIcon");
+//       dayTwoIconDis.setAttribute("src", getWeatherIcon + dayTwoIcon);
+//       let dayTwoTempDis = document.querySelector(".dayTwoTemp");
+//       dayTwoTempDis.textContent = dayTwoTemp;
+//       let dayTwoWindDis = document.querySelector(".dayTwoWind");
+//       dayTwoWindDis.textContent = dayTwoWind;
+//       let dayTwoHumdDis = document.querySelector(".dayTwoHumd");
+//       dayTwoHumdDis.textContent = dayTwoHumd;
 
-      // Day Three
-      let dayThreeDate = fiveDayData.list[2].dt_txt;
-      let dayThreeIcon = fiveDayData.list[2].weather[0].icon + ".png";
-      let dayThreeTemp = fiveDayData.list[2].main.temp;
-      let dayThreeWind = fiveDayData.list[2].wind.speed;
-      let dayThreeHumd = fiveDayData.list[2].main.humidity;
+//       // Day Three
+//       let dayThreeDate = data.daily[2].dt_txt;
+//       let dayThreeIcon = data.daily[2].weather[0].icon + ".png";
+//       let dayThreeTemp = data.daily[2].main.temp;
+//       let dayThreeWind = data.daily[2].wind.speed;
+//       let dayThreeHumd = data.daily[2].main.humidity;
 
-      let dayThreeDateDis = document.querySelector(".dayThreeDate");
-      dayThreeDateDis.textContent = dayThreeDate;
-      let dayThreeIconDis = document.querySelector(".dayThreeIcon");
-      dayThreeIconDis.setAttribute("src", getWeatherIcon + dayThreeIcon);
-      let dayThreeTempDis = document.querySelector(".dayThreeTemp");
-      dayThreeTempDis.textContent = dayThreeTemp;
-      let dayThreeWindDis = document.querySelector(".dayThreeWind");
-      dayThreeWindDis.textContent = dayThreeWind;
-      let dayThreeHumdDis = document.querySelector(".dayThreeHumd");
-      dayThreeHumdDis.textContent = dayThreeHumd;
+//       let dayThreeDateDis = document.querySelector(".dayThreeDate");
+//       dayThreeDateDis.textContent = dayThreeDate;
+//       let dayThreeIconDis = document.querySelector(".dayThreeIcon");
+//       dayThreeIconDis.setAttribute("src", getWeatherIcon + dayThreeIcon);
+//       let dayThreeTempDis = document.querySelector(".dayThreeTemp");
+//       dayThreeTempDis.textContent = dayThreeTemp;
+//       let dayThreeWindDis = document.querySelector(".dayThreeWind");
+//       dayThreeWindDis.textContent = dayThreeWind;
+//       let dayThreeHumdDis = document.querySelector(".dayThreeHumd");
+//       dayThreeHumdDis.textContent = dayThreeHumd;
 
-      // Day Four
-      let dayFourDate = fiveDayData.list[3].dt_txt;
-      let dayFourIcon = fiveDayData.list[3].weather[0].icon + ".png";
-      let dayFourTemp = fiveDayData.list[3].main.temp;
-      let dayFourWind = fiveDayData.list[3].wind.speed;
-      let dayFourHumd = fiveDayData.list[3].main.humidity;
+//       // Day Four
+//       let dayFourDate = data.daily[3].dt_txt;
+//       let dayFourIcon = data.daily[3].weather[0].icon + ".png";
+//       let dayFourTemp = data.daily[3].main.temp;
+//       let dayFourWind = data.daily[3].wind.speed;
+//       let dayFourHumd = data.daily[3].main.humidity;
 
-      let dayFourDateDis = document.querySelector(".dayFourDate");
-      dayFourDateDis.textContent = dayFourDate;
-      let dayFourIconDis = document.querySelector(".dayFourIcon");
-      dayFourIconDis.setAttribute("src", getWeatherIcon + dayFourIcon);
-      let dayFourTempDis = document.querySelector(".dayFourTemp");
-      dayFourTempDis.textContent = dayFourTemp;
-      let dayFourWindDis = document.querySelector(".dayFourWind");
-      dayFourWindDis.textContent = dayFourWind;
-      let dayFourHumdDis = document.querySelector(".dayFourHumd");
-      dayFourHumdDis.textContent = dayFourHumd;
+//       let dayFourDateDis = document.querySelector(".dayFourDate");
+//       dayFourDateDis.textContent = dayFourDate;
+//       let dayFourIconDis = document.querySelector(".dayFourIcon");
+//       dayFourIconDis.setAttribute("src", getWeatherIcon + dayFourIcon);
+//       let dayFourTempDis = document.querySelector(".dayFourTemp");
+//       dayFourTempDis.textContent = dayFourTemp;
+//       let dayFourWindDis = document.querySelector(".dayFourWind");
+//       dayFourWindDis.textContent = dayFourWind;
+//       let dayFourHumdDis = document.querySelector(".dayFourHumd");
+//       dayFourHumdDis.textContent = dayFourHumd;
 
-      // Day Five
-      let dayFiveDate = fiveDayData.list[4].dt_txt;
-      let dayFiveIcon = fiveDayData.list[4].weather[0].icon + ".png";
-      let dayFiveTemp = fiveDayData.list[4].main.temp;
-      let dayFiveWind = fiveDayData.list[4].wind.speed;
-      let dayFiveHumd = fiveDayData.list[4].main.humidity;
+//       // Day Five
+//       let dayFiveDate = data.daily[4].dt_txt;
+//       let dayFiveIcon = data.daily[4].weather[0].icon + ".png";
+//       let dayFiveTemp = data.daily[4].main.temp;
+//       let dayFiveWind = data.daily[4].wind.speed;
+//       let dayFiveHumd = data.daily[4].main.humidity;
 
-      let dayFiveDateDis = document.querySelector(".dayFiveDate");
-      dayFiveDateDis.textContent = dayFiveDate;
-      let dayFiveIconDis = document.querySelector(".dayFiveIcon");
-      dayFiveIconDis.setAttribute("src", getWeatherIcon + dayFiveIcon);
-      let dayFiveTempDis = document.querySelector(".dayFiveTemp");
-      dayFiveTempDis.textContent = dayFiveTemp;
-      let dayFiveWindDis = document.querySelector(".dayFiveWind");
-      dayFiveWindDis.textContent = dayFiveWind;
-      let dayFiveHumdDis = document.querySelector(".dayFiveHumd");
-      dayFiveHumdDis.textContent = dayFiveHumd;
-    });
-}
+//       let dayFiveDateDis = document.querySelector(".dayFiveDate");
+//       dayFiveDateDis.textContent = dayFiveDate;
+//       let dayFiveIconDis = document.querySelector(".dayFiveIcon");
+//       dayFiveIconDis.setAttribute("src", getWeatherIcon + dayFiveIcon);
+//       let dayFiveTempDis = document.querySelector(".dayFiveTemp");
+//       dayFiveTempDis.textContent = dayFiveTemp;
+//       let dayFiveWindDis = document.querySelector(".dayFiveWind");
+//       dayFiveWindDis.textContent = dayFiveWind;
+//       let dayFiveHumdDis = document.querySelector(".dayFiveHumd");
+//       dayFiveHumdDis.textContent = dayFiveHumd;
+//     });
+// }
 
 function StoreData() {
   localStorage.setItem("arraySearchHistory", JSON.stringify(searchHistory));
