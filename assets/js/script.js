@@ -63,14 +63,14 @@ btn.addEventListener("click", function () {
           let currentCityDis = document.querySelector(".city-name");
           currentCityDis.textContent = currentCity;
 
-          //get date:
-          let currentDateVar = moment().format("MMM Do YYYY");
+          //get date & convert to standard time:
+          let currentDateVar = data.current.dt;
+          parseInt(currentDateVar);
+          let convertDateVar = currentDateVar * 1000;
+          let updateConvertDate = new Date(convertDateVar);
 
           // Get weather Icon:
           let wIcon = data.current.weather[0].icon + ".png";
-          // let weatherImg = document.createElement("img");
-          // weatherImg.setAttribute("src", getWeatherIcon + wIcon);
-          // document.body.appendChild(weatherImg);
 
           let currentIcon = document.querySelector(".current-icon");
           currentIcon.setAttribute("src", getWeatherIcon + wIcon);
@@ -83,7 +83,7 @@ btn.addEventListener("click", function () {
 
           // Display current weather conditions
           let currentDate = document.querySelector(".current-date");
-          currentDate.textContent = currentDateVar;
+          currentDate.textContent = updateConvertDate;
 
           let currentTemp = document.querySelector(".current-temp");
           currentTemp.textContent = "temp: " + temp;
@@ -109,14 +109,17 @@ btn.addEventListener("click", function () {
           // Five day data
           // Day one
           // Icon, ,data, temp, wind speed ,& humd
-          let dayOneDate = data.daily[0].dt;
-          let dayOneIcon = data.daily[0].weather[0].icon + ".png";
-          let dayOneTemp = data.daily[0].temp.day;
-          let dayOneWind = data.daily[0].wind_speed;
-          let dayOneHumd = data.daily[0].humidity;
+          let dayOneDate = data.daily[1].dt;
+          parseInt(dayOneDate);
+          let convertDayOneDate = dayOneDate * 1000;
+          let updateDayOneDate = new Date(convertDayOneDate);
+          let dayOneIcon = data.daily[1].weather[0].icon + ".png";
+          let dayOneTemp = data.daily[1].temp.day;
+          let dayOneWind = data.daily[1].wind_speed;
+          let dayOneHumd = data.daily[1].humidity;
 
           let dayOneDateDis = document.querySelector(".dayOneDate");
-          dayOneDateDis.textContent = "date: " + dayOneDate;
+          dayOneDateDis.textContent = updateDayOneDate;
           let dayOneIconDis = document.querySelector(".dayOneIcon");
           dayOneIconDis.setAttribute("src", getWeatherIcon + dayOneIcon);
           let dayOneTempDis = document.querySelector(".dayOneTemp");
@@ -127,14 +130,17 @@ btn.addEventListener("click", function () {
           dayOneHumdDis.textContent = "humidity: " + dayOneHumd;
 
           // Day Two
-          let dayTwoDate = data.daily[1].dt;
-          let dayTwoIcon = data.daily[1].weather[0].icon + ".png";
-          let dayTwoTemp = data.daily[1].temp.day;
-          let dayTwoWind = data.daily[1].wind_speed;
-          let dayTwoHumd = data.daily[1].humidity;
+          let dayTwoDate = data.daily[2].dt;
+          parseInt(dayTwoDate);
+          let convertDayTwoDate = dayTwoDate * 1000;
+          let updateTwoOneDate = new Date(convertDayTwoDate);
+          let dayTwoIcon = data.daily[2].weather[0].icon + ".png";
+          let dayTwoTemp = data.daily[2].temp.day;
+          let dayTwoWind = data.daily[2].wind_speed;
+          let dayTwoHumd = data.daily[2].humidity;
 
           let dayTwoDateDis = document.querySelector(".dayTwoDate");
-          dayTwoDateDis.textContent = "date: " + dayTwoDate;
+          dayTwoDateDis.textContent = updateTwoOneDate;
           let dayTwoIconDis = document.querySelector(".dayTwoIcon");
           dayTwoIconDis.setAttribute("src", getWeatherIcon + dayTwoIcon);
           let dayTwoTempDis = document.querySelector(".dayTwoTemp");
@@ -145,14 +151,17 @@ btn.addEventListener("click", function () {
           dayTwoHumdDis.textContent = "humidity: " + dayTwoHumd;
 
           // Day Three
-          let dayThreeDate = data.daily[2].dt;
-          let dayThreeIcon = data.daily[2].weather[0].icon + ".png";
-          let dayThreeTemp = data.daily[2].temp.day;
-          let dayThreeWind = data.daily[2].wind_speed;
-          let dayThreeHumd = data.daily[2].humidity;
+          let dayThreeDate = data.daily[3].dt;
+          parseInt(dayThreeDate);
+          let convertDayThreeDate = dayThreeDate * 1000;
+          let updateThreeOneDate = new Date(convertDayThreeDate);
+          let dayThreeIcon = data.daily[3].weather[0].icon + ".png";
+          let dayThreeTemp = data.daily[3].temp.day;
+          let dayThreeWind = data.daily[3].wind_speed;
+          let dayThreeHumd = data.daily[3].humidity;
 
           let dayThreeDateDis = document.querySelector(".dayThreeDate");
-          dayThreeDateDis.textContent = "date: " + dayThreeDate;
+          dayThreeDateDis.textContent = updateThreeOneDate;
           let dayThreeIconDis = document.querySelector(".dayThreeIcon");
           dayThreeIconDis.setAttribute("src", getWeatherIcon + dayThreeIcon);
           let dayThreeTempDis = document.querySelector(".dayThreeTemp");
@@ -163,14 +172,17 @@ btn.addEventListener("click", function () {
           dayThreeHumdDis.textContent = "humidity: " + dayThreeHumd;
 
           // Day Four
-          let dayFourDate = data.daily[3].dt;
-          let dayFourIcon = data.daily[3].weather[0].icon + ".png";
-          let dayFourTemp = data.daily[3].temp.day;
-          let dayFourWind = data.daily[3].wind_speed;
-          let dayFourHumd = data.daily[3].humidity;
+          let dayFourDate = data.daily[4].dt;
+          parseInt(dayFourDate);
+          let convertDayFourDate = dayFourDate * 1000;
+          let updateFourOneDate = new Date(convertDayFourDate);
+          let dayFourIcon = data.daily[4].weather[0].icon + ".png";
+          let dayFourTemp = data.daily[4].temp.day;
+          let dayFourWind = data.daily[4].wind_speed;
+          let dayFourHumd = data.daily[4].humidity;
 
           let dayFourDateDis = document.querySelector(".dayFourDate");
-          dayFourDateDis.textContent = "date: " + dayFourDate;
+          dayFourDateDis.textContent = updateFourOneDate;
           let dayFourIconDis = document.querySelector(".dayFourIcon");
           dayFourIconDis.setAttribute("src", getWeatherIcon + dayFourIcon);
           let dayFourTempDis = document.querySelector(".dayFourTemp");
@@ -181,14 +193,17 @@ btn.addEventListener("click", function () {
           dayFourHumdDis.textContent = "humidity: " + dayFourHumd;
 
           // Day Five
-          let dayFiveDate = data.daily[4].dt;
-          let dayFiveIcon = data.daily[4].weather[0].icon + ".png";
-          let dayFiveTemp = data.daily[4].temp.day;
-          let dayFiveWind = data.daily[4].wind_speed;
-          let dayFiveHumd = data.daily[4].humidity;
+          let dayFiveDate = data.daily[5].dt;
+          parseInt(dayFiveDate);
+          let convertDayFiveDate = dayFiveDate * 1000;
+          let updateFiveOneDate = new Date(convertDayFiveDate);
+          let dayFiveIcon = data.daily[5].weather[0].icon + ".png";
+          let dayFiveTemp = data.daily[5].temp.day;
+          let dayFiveWind = data.daily[5].wind_speed;
+          let dayFiveHumd = data.daily[5].humidity;
 
           let dayFiveDateDis = document.querySelector(".dayFiveDate");
-          dayFiveDateDis.textContent = "date: " + dayFiveDate;
+          dayFiveDateDis.textContent = updateFiveOneDate;
           let dayFiveIconDis = document.querySelector(".dayFiveIcon");
           dayFiveIconDis.setAttribute("src", getWeatherIcon + dayFiveIcon);
           let dayFiveTempDis = document.querySelector(".dayFiveTemp");
