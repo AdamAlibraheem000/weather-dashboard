@@ -6,6 +6,9 @@ var cityName = "";
 var getWeatherIcon = "https://openweathermap.org/img/wn/";
 
 var btn = document.querySelector(".btn");
+var btnSearchHistory = document.querySelector(".btn-d");
+var ulSearchResults = document.querySelector(".search-display");
+
 btn.addEventListener("click", function () {
   cityName = document.getElementById("userInput").value;
   let lat = "";
@@ -22,8 +25,6 @@ btn.addEventListener("click", function () {
     "http://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&cnt=5&appid=6a193b0402d92ad688c98786f9ef7e7f";
-
-  // fiveDayFetch(getFiveDay);
 
   fetch(getCityAPI)
     .then(function (response) {
@@ -49,12 +50,14 @@ btn.addEventListener("click", function () {
           let getCityName = cityName;
 
           // Check if city name is already in array before adding to array
+
           for (let i = 0; i < searchHistory.length; i++) {
             if (searchHistory[i] === getCityName) {
               console.log("Already in array!");
               break;
             } else {
               searchHistory.push(getCityName);
+              StoreData();
             }
           }
 
@@ -216,110 +219,38 @@ btn.addEventListener("click", function () {
     });
 });
 
-// function fiveDayFetch(cityName) {
-//   let getCityName = cityName;
-//   fetch(getCityName)
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       // Day one
-//       // Icon, ,data, temp, wind speed ,& humd
-//       let dayOneDate = data.daily[0].dt_txt;
-//       let dayOneIcon = data.daily[0].weather[0].icon + ".png";
-//       let dayOneTemp = data.daily[0].main.temp;
-//       let dayOneWind = data.daily[0].wind.speed;
-//       let dayOneHumd = data.daily[0].main.humidity;
+btnSearchHistory.addEventListener("click", function () {
+  searchHistory = JSON.parse(localStorage.getItem("arraySearchHistory"));
 
-//       let dayOneDateDis = document.querySelector(".dayOneDate");
-//       dayOneDateDis.textContent = dayOneDate;
-//       let dayOneIconDis = document.querySelector(".dayOneIcon");
-//       dayOneIconDis.setAttribute("src", getWeatherIcon + dayOneIcon);
-//       let dayOneTempDis = document.querySelector(".dayOneTemp");
-//       dayOneTempDis.textContent = dayOneTemp;
-//       let dayOneWindDis = document.querySelector(".dayOneWind");
-//       dayOneWindDis.textContent = dayOneWind;
-//       let dayOneHumdDis = document.querySelector(".dayOneHumd");
-//       dayOneHumdDis.textContent = dayOneHumd;
+  for (let i = 0; i < searchHistory.length; i++) {
+    console.log(searchHistory[i]);
+    var newItem = document.createElement("button");
+    newItem.textContent = searchHistory[i];
+    newItem.style.display = "block";
+    newItem.setAttribute("id", "#" + i);
+    ulSearchResults.appendChild(newItem);
+  }
+});
 
-//       // Day Two
-//       let dayTwoDate = data.daily[1].dt_txt;
-//       let dayTwoIcon = data.daily[1].weather[0].icon + ".png";
-//       let dayTwoTemp = data.daily[1].main.temp;
-//       let dayTwoWind = data.daily[1].wind.speed;
-//       let dayTwoHumd = data.daily[1].main.humidity;
-
-//       let dayTwoDateDis = document.querySelector(".dayTwoDate");
-//       dayTwoDateDis.textContent = dayTwoDate;
-//       let dayTwoIconDis = document.querySelector(".dayTwoIcon");
-//       dayTwoIconDis.setAttribute("src", getWeatherIcon + dayTwoIcon);
-//       let dayTwoTempDis = document.querySelector(".dayTwoTemp");
-//       dayTwoTempDis.textContent = dayTwoTemp;
-//       let dayTwoWindDis = document.querySelector(".dayTwoWind");
-//       dayTwoWindDis.textContent = dayTwoWind;
-//       let dayTwoHumdDis = document.querySelector(".dayTwoHumd");
-//       dayTwoHumdDis.textContent = dayTwoHumd;
-
-//       // Day Three
-//       let dayThreeDate = data.daily[2].dt_txt;
-//       let dayThreeIcon = data.daily[2].weather[0].icon + ".png";
-//       let dayThreeTemp = data.daily[2].main.temp;
-//       let dayThreeWind = data.daily[2].wind.speed;
-//       let dayThreeHumd = data.daily[2].main.humidity;
-
-//       let dayThreeDateDis = document.querySelector(".dayThreeDate");
-//       dayThreeDateDis.textContent = dayThreeDate;
-//       let dayThreeIconDis = document.querySelector(".dayThreeIcon");
-//       dayThreeIconDis.setAttribute("src", getWeatherIcon + dayThreeIcon);
-//       let dayThreeTempDis = document.querySelector(".dayThreeTemp");
-//       dayThreeTempDis.textContent = dayThreeTemp;
-//       let dayThreeWindDis = document.querySelector(".dayThreeWind");
-//       dayThreeWindDis.textContent = dayThreeWind;
-//       let dayThreeHumdDis = document.querySelector(".dayThreeHumd");
-//       dayThreeHumdDis.textContent = dayThreeHumd;
-
-//       // Day Four
-//       let dayFourDate = data.daily[3].dt_txt;
-//       let dayFourIcon = data.daily[3].weather[0].icon + ".png";
-//       let dayFourTemp = data.daily[3].main.temp;
-//       let dayFourWind = data.daily[3].wind.speed;
-//       let dayFourHumd = data.daily[3].main.humidity;
-
-//       let dayFourDateDis = document.querySelector(".dayFourDate");
-//       dayFourDateDis.textContent = dayFourDate;
-//       let dayFourIconDis = document.querySelector(".dayFourIcon");
-//       dayFourIconDis.setAttribute("src", getWeatherIcon + dayFourIcon);
-//       let dayFourTempDis = document.querySelector(".dayFourTemp");
-//       dayFourTempDis.textContent = dayFourTemp;
-//       let dayFourWindDis = document.querySelector(".dayFourWind");
-//       dayFourWindDis.textContent = dayFourWind;
-//       let dayFourHumdDis = document.querySelector(".dayFourHumd");
-//       dayFourHumdDis.textContent = dayFourHumd;
-
-//       // Day Five
-//       let dayFiveDate = data.daily[4].dt_txt;
-//       let dayFiveIcon = data.daily[4].weather[0].icon + ".png";
-//       let dayFiveTemp = data.daily[4].main.temp;
-//       let dayFiveWind = data.daily[4].wind.speed;
-//       let dayFiveHumd = data.daily[4].main.humidity;
-
-//       let dayFiveDateDis = document.querySelector(".dayFiveDate");
-//       dayFiveDateDis.textContent = dayFiveDate;
-//       let dayFiveIconDis = document.querySelector(".dayFiveIcon");
-//       dayFiveIconDis.setAttribute("src", getWeatherIcon + dayFiveIcon);
-//       let dayFiveTempDis = document.querySelector(".dayFiveTemp");
-//       dayFiveTempDis.textContent = dayFiveTemp;
-//       let dayFiveWindDis = document.querySelector(".dayFiveWind");
-//       dayFiveWindDis.textContent = dayFiveWind;
-//       let dayFiveHumdDis = document.querySelector(".dayFiveHumd");
-//       dayFiveHumdDis.textContent = dayFiveHumd;
-//     });
-// }
+var btnSearchChoice = document.querySelector(".search-display");
+btnSearchChoice.addEventListener("click", function (e) {
+  e.target.matches("click");
+  var getText = e.target.textContent;
+  document.removeChild(document.documentElement);
+  location.reload();
+  cityName.textContent = getText;
+});
 
 function StoreData() {
   localStorage.setItem("arraySearchHistory", JSON.stringify(searchHistory));
 }
 
-function RetrieveData() {
-  searchHistory = JSON.parse(localStorage.getItem("arraySeachHistory"));
+function btnSearchClick() {
+  // alert("beer");
+  // var textInput = document.getElementById("userInput");
+  // textInput.textContent = "";
 }
+
+// function RetrieveData() {
+//   searchHistory = JSON.parse(localStorage.getItem("arraySearchHistory"));
+// }

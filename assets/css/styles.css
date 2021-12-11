@@ -15,15 +15,24 @@
 }
 
 .grid-one .current {
-  height: 300px;
+  height: 200px;
   border: 2px solid black;
 }
 
 .grid-two {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border: 2px solid black;
 }
 
 .current-uvi {
+  display: inline;
+}
+
+ul li {
+  list-style: none;
+}
+
+.title-search {
   display: inline;
 }
