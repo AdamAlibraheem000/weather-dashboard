@@ -17,12 +17,12 @@ btn.addEventListener("click", function () {
   // Acquire city lat & longitude
 
   let getCityAPI =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&appid=6a193b0402d92ad688c98786f9ef7e7f";
 
   let getFiveDay =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&cnt=5&appid=6a193b0402d92ad688c98786f9ef7e7f";
 
